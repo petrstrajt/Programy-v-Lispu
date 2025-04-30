@@ -1,0 +1,12 @@
+(defun vytvor-soubor ()
+  (format t "Zadej název souboru: ~%")
+  (let ((jmeno-souboru (read-line))
+        (obsah "Ahoj, toto je druhy testovací soubor!"))
+    (with-open-file (stream jmeno-souboru
+                           :direction :output
+                           :if-exists :supersede
+                           :if-does-not-exist :create)
+      (write-string obsah stream))
+    (format t "Soubor '~a' byl vytvořen.~%" jmeno-souboru)))
+
+(vytvor-soubor)
